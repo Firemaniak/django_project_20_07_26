@@ -10,12 +10,10 @@ fake = Faker()
 all_statuses = [choice.value for choice in Statuses]
 all_priorities = [choice.value for choice in Priorities]
 
-
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
-        tag_1 = Tag(name='Backend')
-        tag_2 = Tag(name='Frontend')
-        tag_3 = Tag(name='Q&A')
-        tag_4 = Tag(name='Design')
-        tag_5 = Tag(name='DevOPS')
-        Tag.objects.bulk_create([tag_1, tag_2, tag_3, tag_4, tag_5])
+        projects = [Project(name=fake.word(),
+                            description=fake.paragraph(nb_sentences=random.randint(2, 5)))
+                    for _ in range(10)]
+        Project.objects.bulk_create(projects)
+        self.stdout.write('Projects created!')

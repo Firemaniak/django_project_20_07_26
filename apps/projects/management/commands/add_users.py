@@ -10,12 +10,11 @@ fake = Faker()
 all_statuses = [choice.value for choice in Statuses]
 all_priorities = [choice.value for choice in Priorities]
 
-
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
-        tag_1 = Tag(name='Backend')
-        tag_2 = Tag(name='Frontend')
-        tag_3 = Tag(name='Q&A')
-        tag_4 = Tag(name='Design')
-        tag_5 = Tag(name='DevOPS')
-        Tag.objects.bulk_create([tag_1, tag_2, tag_3, tag_4, tag_5])
+        users = [User(username='Backend', password='12345'),
+                 User(username='Frontend', password='12345'),
+                 User(username='DevOPS', password='12345'),
+                 User(username='Q&A', password='12345'),
+                 User(username='Designer', password='12345')]
+        User.objects.bulk_create(users)

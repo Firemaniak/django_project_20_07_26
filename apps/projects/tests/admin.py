@@ -1,4 +1,4 @@
-#from django.conf import settings
+from django.conf import settings
 from django.contrib import admin
 from apps.projects.models import Project, Task, Tag, ProjectFile
 
